@@ -1,13 +1,10 @@
 import Link from 'next/link';
+import { formatDate } from '../util';
 
 import Text from './blocks/text';
 
 const PostItem = ({ description, id, timestamp, title }) => {
-  const date = new Date(timestamp).toLocaleString('en-US', {
-    month: 'long',
-    day: '2-digit',
-    year: 'numeric',
-  });
+  const date = formatDate(timestamp);
 
   return (
     <div className="py-5">

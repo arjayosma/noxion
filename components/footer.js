@@ -2,7 +2,10 @@ const Footer = () => {
   return (
     <footer className="flex flex-col items-center py-5 space-y-5 text-sm md:flex-row md:justify-between md:space-y-0">
       <div>
-        <span>&copy; All rights reserved 2021</span>
+        <span>
+          &copy; All rights reserved 2021
+          <span className="ml-5 text-gray-400">v0.1.0</span>
+        </span>
       </div>
       <div className="space-x-3">
         <a href="https://facebook.com/" rel="noreferrer" target="_blank">
