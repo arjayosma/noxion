@@ -1,7 +1,13 @@
+import Link from 'next/link';
+
 const Header = () => {
   return (
     <header>
-      <h1 className="font-bold text-4xl">Noxion Blog</h1>
+      <Link href="/">
+        <a>
+          <h1 className="font-bold text-4xl">Noxion Blog</h1>
+        </a>
+      </Link>
     </header>
   );
 };

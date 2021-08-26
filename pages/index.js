@@ -1,14 +1,24 @@
 import About from '../components/about';
-import Header from '../components/header';
+import Posts from '../components/posts';
 import MainLayout from '../layouts/main-layout';
+import { getBlogList } from '../lib/notion';
 
-const Home = () => {
+const Home = ({ posts }) => {
   return (
     <MainLayout>
-      <Header />
       <About />
+      <Posts posts={posts} />
     </MainLayout>
   );
 };
+
+export async function getStaticProps({ params }) {
+  const blogList = await getBlogList();
+  return {
+    props: {
+      posts: blogList,
+    },
+  };
+}
 
 export default Home;
