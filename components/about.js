@@ -7,7 +7,7 @@ const About = () => {
       <div>
         <p className="text-center text-sm md:text-base md:text-left">
           Welcome to <strong>Noxion</strong>! This is a Next.js blog with data
-          fetched from the Notion API. You are witnessing the power of Notion's
+          fetched from the Notion API. You are witnessing the power of Notion
           API.
         </p>
       </div>
