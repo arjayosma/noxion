@@ -18,6 +18,7 @@ export async function getStaticProps() {
     props: {
       posts: blogList,
     },
+    revalidate: 1,
   };
 }
 

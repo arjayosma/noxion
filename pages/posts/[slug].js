@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  return { props: {} };
+  return { props: {}, revalidate: 1 };
 }
 
 export default Post;
