@@ -12,7 +12,7 @@ const Home = ({ posts }) => {
   );
 };
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps() {
   const blogList = await getBlogList();
   return {
     props: {

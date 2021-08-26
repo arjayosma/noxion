@@ -4,7 +4,7 @@ import SEO from '../components/seo';
 
 const MainLayout = ({ children }) => {
   return (
-    <main className="mx-auto px-5 py-10 text-gray-900 w-1/2">
+    <main className="mx-auto px-5 py-5 text-gray-900 md:py-10 md:w-1/2">
       <Header />
       <SEO />
       {children}

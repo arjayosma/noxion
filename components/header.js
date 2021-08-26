@@ -5,7 +5,9 @@ const Header = () => {
     <header>
       <Link href="/">
         <a>
-          <h1 className="font-bold text-4xl">Noxion Blog</h1>
+          <h1 className="font-bold text-4xl text-center md:text-left">
+            Noxion Blog
+          </h1>
         </a>
       </Link>
     </header>
