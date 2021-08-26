@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { formatDate } from '../util';
 
-import Text from './blocks/text';
+import Text from './blocks/renderer/text';
 
 const PostItem = ({ description, id, timestamp, title }) => {
   const date = formatDate(timestamp);

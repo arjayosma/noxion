@@ -1,4 +1,5 @@
-import Text from '../../components/blocks/text';
+import Block from '../../components/blocks/block';
+import Text from '../../components/blocks/renderer/text';
 import MainLayout from '../../layouts/main-layout';
 import { getBlocks, getBlogList, getPage } from '../../lib/notion';
 import { formatDate } from '../../util';
@@ -17,6 +18,11 @@ const Post = ({ blocks, post }) => {
           </h1>
           <p className="text-gray-400 text-sm">Last updated: {date}</p>
         </div>
+        <section className="py-5">
+          {blocks.map((block, index) => (
+            <Block key={index} block={block} />
+          ))}
+        </section>
       </article>
     </MainLayout>
   );
@@ -35,9 +41,30 @@ export async function getStaticProps({ params }) {
   const post = await getPage(slug);
   const blocks = await getBlocks(slug);
 
+  const childBlocks = await Promise.all(
+    blocks
+      .filter(({ has_children }) => has_children)
+      .map(async ({ id }) => {
+        return {
+          id,
+          children: await getBlocks(id),
+        };
+      })
+  );
+
+  const blocksWithChildren = blocks.map((block) => {
+    const { has_children, id, type } = block;
+    if (has_children && !block[type].children) {
+      block[type]['children'] = childBlocks.find(
+        (child) => child.id === id
+      )?.children;
+    }
+    return block;
+  });
+
   return {
     props: {
-      blocks,
+      blocks: blocksWithChildren,
       post,
     },
     revalidate: 1,
