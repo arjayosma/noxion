@@ -8,13 +8,28 @@ const Footer = () => {
         </span>
       </div>
       <div className="space-x-3">
-        <a href="https://facebook.com/" rel="noreferrer" target="_blank">
+        <a
+          className="hover:underline text-blue-600"
+          href="https://facebook.com/"
+          rel="noreferrer"
+          target="_blank"
+        >
           Facebook
         </a>
-        <a href="https://twitter.com/" rel="noreferrer" target="_blank">
+        <a
+          className="hover:underline text-blue-600"
+          href="https://twitter.com/"
+          rel="noreferrer"
+          target="_blank"
+        >
           Twitter
         </a>
-        <a href="https://linkedin.com/" rel="noreferrer" target="_blank">
+        <a
+          className="hover:underline text-blue-600"
+          href="https://linkedin.com/"
+          rel="noreferrer"
+          target="_blank"
+        >
           LinkedIn
         </a>
       </div>

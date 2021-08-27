@@ -18,7 +18,19 @@ const Text = ({ text }) => {
           .filter((className) => className !== '')
           .join(' ')}
       >
-        {text.link ? <a href={text.link.url}>{text.content}</a> : text.content}
+        {text.link ? (
+          <a
+            className={[
+              color ? getColor(color) : 'text-blue-600',
+              'underline',
+            ].join(' ')}
+            href={text.link.url}
+          >
+            {text.content}
+          </a>
+        ) : (
+          text.content
+        )}
       </span>
     );
   });
