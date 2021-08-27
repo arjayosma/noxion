@@ -28,9 +28,9 @@ export const getColor = (color) => {
   const colors = {
     default: 'text-gray-900',
     gray: 'text-gray-600',
-    brown: 'text-amber-600',
-    orange: 'text-orange-600',
-    yellow: 'text-yellow-600',
+    brown: 'text-yellow-800',
+    orange: 'text-yellow-600',
+    yellow: 'text-yellow-400',
     green: 'text-green-600',
     blue: 'text-blue-600',
     purple: 'text-purple-600',
@@ -53,7 +53,7 @@ export const renderBlock = (block) => {
   const { has_children, id, type } = block;
   const Component = components[type];
   return Component ? (
-    <Component id={id} content={block[type]} hasChildren={has_children} />
+    <Component key={id} content={block[type]} hasChildren={has_children} />
   ) : (
     <div className="bg-gray-100 mt-3 p-5 rounded">
       <p className="text-sm">
