@@ -2,17 +2,23 @@ import BulletedList from '../components/blocks/renderer/bulleted-list';
 import HeadingOne from '../components/blocks/renderer/heading-one';
 import HeadingThree from '../components/blocks/renderer/heading-three';
 import HeadingTwo from '../components/blocks/renderer/heading-two';
+import ImageObject from '../components/blocks/renderer/image-object';
 import NumberedList from '../components/blocks/renderer/numbered-list';
+import Page from '../components/blocks/renderer/page';
 import Paragraph from '../components/blocks/renderer/paragraph';
+import ToDo from '../components/blocks/renderer/todo';
 import Toggle from '../components/blocks/renderer/toggle';
 
 const components = {
   bulleted_list_item: BulletedList,
+  child_page: Page,
   heading_1: HeadingOne,
   heading_2: HeadingTwo,
   heading_3: HeadingThree,
+  image: ImageObject,
   numbered_list_item: NumberedList,
   paragraph: Paragraph,
+  to_do: ToDo,
   toggle: Toggle,
 };
 
@@ -53,7 +59,12 @@ export const renderBlock = (block) => {
   const { has_children, id, type } = block;
   const Component = components[type];
   return Component ? (
-    <Component key={id} content={block[type]} hasChildren={has_children} />
+    <Component
+      key={id}
+      content={block[type]}
+      hasChildren={has_children}
+      id={id}
+    />
   ) : (
     <div className="bg-gray-100 mt-3 p-5 rounded">
       <p className="text-sm">
