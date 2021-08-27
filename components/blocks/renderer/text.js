@@ -21,7 +21,7 @@ const Text = ({ text }) => {
         {text.link ? (
           <a
             className={[
-              color ? getColor(color) : 'text-blue-600',
+              color !== 'default' ? getColor(color) : 'text-blue-600',
               'underline',
             ].join(' ')}
             href={text.link.url}
