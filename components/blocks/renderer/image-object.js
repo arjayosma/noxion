@@ -8,8 +8,9 @@ const ImageObject = ({ content }) => {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         alt={cap?.plain_text || 'Image from Notion'}
-        src={content[type].url}
+        className="rounded"
         loading="lazy"
+        src={content[type].url}
       />
       {caption && (
         <figcaption className="italic text-sm text-gray-400">
