@@ -1,7 +1,7 @@
 import Block from '../../components/blocks/block';
 import Text from '../../components/blocks/renderer/text';
 import MainLayout from '../../layouts/main-layout';
-import { getBlocks, getBlogList, getPage } from '../../lib/notion';
+import { getBlocks, getDatabase, getPage } from '../../lib/notion';
 import { formatDate } from '../../util';
 
 const Post = ({ blocks, post }) => {
@@ -29,7 +29,14 @@ const Post = ({ blocks, post }) => {
 };
 
 export async function getStaticPaths() {
-  const blogList = await getBlogList();
+  const blogList = await getDatabase();
+  blogList.map((page) => {
+    const [titleObject] = page.properties.Title.title;
+    console.log(titleObject.plain_text);
+    return {
+      params: { id: page.id, slug: page.properties.Title.title },
+    };
+  });
   return {
     fallback: false,
     paths: blogList.map((page) => ({ params: { slug: page.id } })),

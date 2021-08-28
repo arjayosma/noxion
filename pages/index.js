@@ -1,7 +1,7 @@
 import About from '../components/about';
 import Posts from '../components/posts';
 import MainLayout from '../layouts/main-layout';
-import { getBlogList } from '../lib/notion';
+import { getDatabase } from '../lib/notion';
 
 const Home = ({ posts }) => {
   return (
@@ -13,7 +13,7 @@ const Home = ({ posts }) => {
 };
 
 export async function getStaticProps() {
-  const blogList = await getBlogList();
+  const blogList = await getDatabase();
   return {
     props: {
       posts: blogList,
