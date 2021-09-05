@@ -14,9 +14,17 @@ const Home = ({ posts }) => {
 
 export async function getStaticProps() {
   const blogList = await getDatabase();
+  const posts = blogList.map((page) => {
+    const { type } = page.properties.Slug;
+    const slug = page.properties.Slug[type].name;
+    return {
+      ...page,
+      slug,
+    };
+  });
   return {
     props: {
-      posts: blogList,
+      posts,
     },
     revalidate: 1,
   };

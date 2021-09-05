@@ -30,23 +30,33 @@ const Post = ({ blocks, post }) => {
 
 export async function getStaticPaths() {
   const blogList = await getDatabase();
-  blogList.map((page) => {
-    const [titleObject] = page.properties.Title.title;
-    console.log(titleObject.plain_text);
+  const paths = blogList.map((page) => {
+    const { id } = page;
+    const { type } = page.properties.Slug;
+    const slug = page.properties.Slug[type].name;
     return {
-      params: { id: page.id, slug: page.properties.Title.title },
+      params: { id, slug },
     };
   });
   return {
     fallback: false,
-    paths: blogList.map((page) => ({ params: { slug: page.id } })),
+    paths,
   };
 }
 
 export async function getStaticProps({ params }) {
   const { slug } = params;
-  const post = await getPage(slug);
-  const blocks = await getBlocks(slug);
+  const filter = {
+    property: 'Slug',
+    select: {
+      equals: slug,
+    },
+  };
+  const blogList = await getDatabase(filter);
+  const [blog] = blogList;
+  const { id } = blog;
+  const post = await getPage(id);
+  const blocks = await getBlocks(id);
 
   const childBlocks = await Promise.all(
     blocks

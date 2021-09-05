@@ -3,14 +3,13 @@ import { formatDate } from '../util';
 
 import Text from './blocks/renderer/text';
 
-const PostItem = ({ description, id, timestamp, title }) => {
+const PostItem = ({ description, id, slug, timestamp, title }) => {
   const date = formatDate(timestamp);
-
   return (
-    <div className="py-5">
+    <div key={id} className="py-5">
       <div className="hover:bg-gray-100 p-10 rounded-lg">
         <header className="mb-5">
-          <Link href={`/posts/${id}`}>
+          <Link href={`/posts/${slug}`}>
             <a>
               <h1 className="font-bold text-2xl">
                 <Text text={title[title.type]} />
@@ -30,13 +29,13 @@ const PostItem = ({ description, id, timestamp, title }) => {
 const Posts = ({ posts }) => {
   return (
     <section className="divide-y">
-      {posts.map((post, index) => {
-        const { id, last_edited_time, properties } = post;
+      {posts.map(({ id, last_edited_time, properties, slug }, index) => {
         return (
           <PostItem
             key={index}
             description={properties.Description}
             id={id}
+            slug={slug}
             timestamp={last_edited_time}
             title={properties.Title}
           />
